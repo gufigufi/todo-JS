@@ -90,9 +90,33 @@ const tasks = [
     return li;
   }
 
+  //функция добавление нового элемента
   function onFormSubmitHandler(e) {
     e.preventDefault();
     const titleValue = inputTitle.value;
     const bodyValue = inputBody.value;
+
+    if (!titleValue || !bodyValue) {
+      alert("Пожалуйста введите title и body");
+      return;
+    }
+
+    const task = createNewTask(titleValue, bodyValue);
+    const listItem = listItemTemplate(task);
+    listContainer.insertAdjacentElement("afterbegin", listItem);
+    form.reset();
+  }
+
+  //функция добавления нового таска в общий объект
+  function createNewTask(title, body) {
+    const newTask = {
+      title,
+      body,
+      completed: false,
+      _id: `task-${Math.random()}`,
+    };
+    objOfTasks[newTask._id] = newTask;
+
+    return { ...newTask };
   }
 })(tasks);
