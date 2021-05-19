@@ -1,0 +1,24 @@
+{
+  "name": "todo-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gufigufi/todo-JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gufigufi/todo-JS/issues"
+  },
+  "homepage": "https://github.com/gufigufi/todo-JS#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.14",
+    "gulp": "^4.0.2",
+    "prettier": "2.3.0"
+  }
+}
