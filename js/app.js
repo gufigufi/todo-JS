@@ -45,6 +45,7 @@ const tasks = [
   //Events
   renderAllTasks(objOfTasks);
   form.addEventListener("submit", onFormSubmitHandler);
+  listContainer.addEventListener("click", onDeleteHandler);
 
   // выводим все таски
   function renderAllTasks(tasksList) {
@@ -70,6 +71,7 @@ const tasks = [
       "flex-wrap",
       "mt-2"
     );
+    li.setAttribute("data-task-id", _id);
 
     const span = document.createElement("span");
     span.textContent = title;
@@ -118,5 +120,29 @@ const tasks = [
     objOfTasks[newTask._id] = newTask;
 
     return { ...newTask };
+  }
+
+  //функция удаления таска
+  function deleteTask(id) {
+    const isConfirm = confirm(`точно удалить ${objOfTasks[id].title}?`);
+    if (!isConfirm) return isConfirm;
+    delete objOfTasks[id];
+    return isConfirm;
+  }
+
+  //удаление таска из HTML
+  function deleteTaskFromHtml(confiirmed, el) {
+    if (!confiirmed) return;
+    el.remove();
+  }
+
+  //удаление выбраного элемента
+  function onDeleteHandler({ target }) {
+    if (target.classList.contains("delete-btn")) {
+      const parent = target.closest("[data-task-id]");
+      const id = parent.dataset.taskId;
+      const confiirmed = deleteTask(id);
+      deleteTaskFromHtml(confiirmed, parent);
+    }
   }
 })(tasks);
