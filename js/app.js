@@ -100,7 +100,7 @@ const tasks = [
       "--input-focus-box-shadow": "0 0 0 0.2rem rgba(141, 143, 146, 0.25)",
     },
   };
-  let lastSelectedTheme = "default";
+  let lastSelectedTheme = localStorage.getItem("app_theme") || "default";
 
   //elenets UI
   const listContainer = document.querySelector(
@@ -112,6 +112,7 @@ const tasks = [
   const themeSelect = document.getElementById("themeSelect");
 
   //Events
+  setTheme(lastSelectedTheme);
   renderAllTasks(objOfTasks);
   form.addEventListener("submit", onFormSubmitHandler);
   listContainer.addEventListener("click", onDeleteHandler);
@@ -228,6 +229,7 @@ const tasks = [
     }
     setTheme(selectedTheme);
     lastSelectedTheme = themeSelect.value;
+    localStorage.setItem("app_theme", selectedTheme);
   }
 
   //устанавливаем тему
